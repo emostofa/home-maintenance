@@ -33,16 +33,18 @@ export default function Login() {
     try {
       
       const response = await axios.post("/api/users/login", user);
-      console.log(response)
-      // if (response.status ) {
+      // console.log(response)
+
+      toast.success("Login successful!");
+      // if (response.status) {
       //     toast.error(response.data);
       // }
       // else toast.success("Login successful! Redirecting to profile");
-      // router.push(`/profile/${email}`);
+      router.push(`/profile/${email}`);
 
 
     } catch (error) {
-      // console.log(error);
+      toast.error(error.response.data.error);
     }
   };
 
