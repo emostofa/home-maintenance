@@ -2,10 +2,15 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
+import toast, { Toaster } from "react-hot-toast";
 
 
 export default function Navbar() {
   const router = useRouter();
+  const notify = () =>{
+    router.push('/login');
+   toast.success('Welcome! Please Login to continue');
+  }
   return (
     <nav className="bg-dark dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -20,9 +25,10 @@ export default function Navbar() {
           </span>
         </Link>
         <div className="flex md:order-2">
-        <button type="button"className="btn btn-info" onClick={() => router.push('/about')}>
+        <button type="button"className="btn btn-info" onClick={notify}>
       Start
     </button>
+    <Toaster/>  
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
