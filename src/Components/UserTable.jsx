@@ -1,9 +1,7 @@
 import React from "react";
 
 export default function UserTable() {
-  const handleDetails = () => {
-    window.my_modal_2.showModal();
-  };
+ 
   return (
     <>
       <tr>

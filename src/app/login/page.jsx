@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -16,33 +16,18 @@ export default function Login() {
   };
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    
   };
-  const notify =  () =>{
-  
-   toast.success("error");
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const user = {
       email,
       password,
     };
     try {
-      
       const response = await axios.post("/api/users/login", user);
-      // console.log(response)
-
       toast.success("Login successful!");
-      // if (response.status) {
-      //     toast.error(response.data);
-      // }
-      // else toast.success("Login successful! Redirecting to profile");
       router.push(`/profile/${email}`);
-
-
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -50,11 +35,13 @@ export default function Login() {
 
   return (
     <>
-      
-      <section className="bg-gray-50 dark:bg-gray-900 mt-6">
+    
+      <section className="bg-gray-50 dark:bg-gray-900">
+       
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 Sign in to your account
               </h1>
@@ -122,20 +109,27 @@ export default function Login() {
                     Forgot password?
                   </Link>
                 </div>
-                <Toaster/>
-                
+                <Toaster />
+
                 <button
                   type="submit"
                   onClick={handleSubmit}
-                  className="btn w-full"
+                  className={`btn btn-${email.length > 0 && password.length > 0 ? "" : "disabled"} w-full` }
                 >
                   Sign In
                 </button>
-                
               </form>
+              <div className="mt-3 text-sm p-3">
+              Not authorized yet? 
+              
+      <Link href={"/contact"} type='button' className="btn btn-warning btn-sm ml-1 mr-1">Contact</Link>
+       and get Access
+              </div>
+              
             </div>
           </div>
         </div>
+        
       </section>
     </>
   );

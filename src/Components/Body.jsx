@@ -34,7 +34,7 @@ export default function Body() {
       <section className="items-center ">
         <div className="justify-evenly">
           <div className="flex  justify-evenly">
-            <Link href={"/rent"}>
+            <Link href={"/calculaterent"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
